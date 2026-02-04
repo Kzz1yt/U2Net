@@ -1,4 +1,4 @@
-# U2Net
+# U2Net: A UAV Imagery based Inspection Framework for Concrete Bridge Using U-shaped Knowledge Distillation
 
 ## Model Architecture
 
@@ -64,3 +64,4 @@
 - Original UNet paper: [U-Net: Convolutional Networks for Biomedical Image Segmentation](https://arxiv.org/abs/1505.04597)
 
 - Knowledge Distillation: [Distilling the Knowledge in a Neural Network](https://arxiv.org/abs/1503.02531)
+

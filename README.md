@@ -1,47 +1,9 @@
-# UNet Distillation Training Demo
-
-## Project Overview
-This project implements knowledge distillation training for UNet segmentation models, focusing on transferring knowledge from a teacher UNet model to a student FastLiteSSNet model using intermediate features.
+# U2Net
 
 ## Model Architecture
 
 ### Teacher Model: UNet
 - **Backbone Options**: VGG or ResNet50
-- **Input Size**: Multiple of 32 (default: 512x512)
-- **Output**: Segmentation map with specified number of classes
-- **Intermediate Features**: Returns multi-scale features for distillation
-
-### Student Model: FastLiteSSNet
-- **Lightweight Architecture**: Optimized for deployment
-- **Fast Cross-Scale Fusion (FCSF)**: Efficient feature fusion module
-- **Intermediate Features**: Returns matched features for distillation
-
-## Distillation Training
-
-### Key Components
-- **Hybrid Distillation Loss (HDL)**: Combines classification loss, Dice loss, and Cauchy-Schwarz divergence
-- **Multi-scale Feature Distillation**: Transfers knowledge across different network layers
-- **Feature Alignment**: Ensures teacher and student features have matching dimensions
-- **Mixed Precision Training (FP16)**: Reduces memory usage
-
-### Training Process
-1. **Freeze Stage**: Backbone frozen, fine-tuning only
-2. **Unfreeze Stage**: Full model training with all parameters
-3. **Learning Rate Schedule**: Cosine decay or step decay
-4. **Batch Size Adjustment**: Based on GPU memory
-
-## Validation & Inference
-
-### Validation Metrics
-- **mIoU (mean Intersection over Union)**: Primary evaluation metric
-- **Loss Values**: Monitor convergence
-
-### Inference Modes
-- **Single Image Prediction**: Interactive input
-- **Batch Prediction**: Process entire folder
-- **Video Detection**: Real-time processing
-- **FPS Testing**: Performance evaluation
-- **ONNX Export**: Deployment preparation
 
 ## Dataset Format
 
@@ -64,27 +26,6 @@ This project implements knowledge distillation training for UNet segmentation mo
   │   └── SegmentationClass/
   ```
 
-## Training Configuration
-
-### Key Parameters
-- `num_classes`: Number of segmentation classes (excluding background)
-- `backbone`: Backbone network (vgg or resnet50)
-- `input_shape`: Input image size (e.g., [512, 512])
-- `Freeze_Train`: Whether to use freeze training
-- `batch_size`: Training batch size (adjust based on GPU memory)
-- `optimizer_type`: Optimization algorithm (adam or sgd)
-- `lr_decay_type`: Learning rate decay strategy (cos or step)
-
-### Memory Optimization
-- Enable FP16 training (`fp16=True`)
-- Reduce batch size if CUDA out-of-memory occurs
-- Use smaller model width factor for student model
-
-## Dependencies
-
-```bash
-pip install -r requirements.txt
-```
 
 ## Usage Examples
 
@@ -111,43 +52,6 @@ pip install -r requirements.txt
    python predict.py
    ```
 
-3. **Video Detection**:
-   ```bash
-   # Set mode='video' in predict.py
-   # Configure video_path
-   python predict.py
-   ```
-
-4. **FPS Testing**:
-   ```bash
-   # Set mode='fps' in predict.py
-   python predict.py
-   ```
-
-5. **ONNX Export**:
-   ```bash
-   # Set mode='export_onnx' in predict.py
-   # Configure onnx_save_path
-   python predict.py
-   ```
-
-## Model Weights
-
-### Pretrained Weights
-- Download from: [Model Zoo](https://github.com/bubbliiiing/unet-pytorch)
-- Place in `model_data/` directory
-
-### Training Output
-- Weights saved in `logs/` directory
-- Loss history saved in `logs/loss_*` directories
-
-## Notes
-
-1. **Dataset Preparation**: Ensure correct VOC format with proper class labels
-2. **Memory Management**: Reduce batch size if encountering CUDA out-of-memory errors
-3. **Feature Alignment**: Teacher and student models must return compatible intermediate features
-4. **Performance Metrics**: Monitor validation loss and mIoU for training progress
-5. **Deployment**: Export to ONNX format for deployment in production environments
 
 ## Troubleshooting
 
@@ -158,4 +62,5 @@ pip install -r requirements.txt
 
 ## References
 - Original UNet paper: [U-Net: Convolutional Networks for Biomedical Image Segmentation](https://arxiv.org/abs/1505.04597)
+
 - Knowledge Distillation: [Distilling the Knowledge in a Neural Network](https://arxiv.org/abs/1503.02531)

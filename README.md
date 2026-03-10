@@ -15,6 +15,7 @@
   - Target Classes: 1, 2, ..., num_classes
 - **File Structure**:
   ```
+  
   VOCdevkit/
   ├── VOC2007/
   │   ├── ImageSets/
@@ -25,6 +26,7 @@
   │   ├── JPEGImages/
   │   └── SegmentationClass/
   ```
+  Dataset Collection: https://drive.google.com/drive/folders/1ZmsHm-h_C2i9EU7xlnuC6uy4ZUp8BI9v?usp=drive_link
 
 
 ## Usage Examples
@@ -64,5 +66,6 @@
 - Original UNet paper: [U-Net: Convolutional Networks for Biomedical Image Segmentation](https://arxiv.org/abs/1505.04597)
 
 - Knowledge Distillation: [Distilling the Knowledge in a Neural Network](https://arxiv.org/abs/1503.02531)
+
 
 
